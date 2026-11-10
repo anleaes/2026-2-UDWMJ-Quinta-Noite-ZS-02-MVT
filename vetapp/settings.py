@@ -11,19 +11,25 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+import os
+import sys 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a9)y#oxxzh26(_^^n&)^1p)x6_&oq$37)!c=lr3pww9cha5gx4'
+#SECRET_KEY = 'django-insecure-a9)y#oxxzh26(_^^n&)^1p)x6_&oq$37)!c=lr3pww9cha5gx4'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -78,6 +84,26 @@ WSGI_APPLICATION = 'vetapp.wsgi.application'
         #'NAME': BASE_DIR / 'db.sqlite3',
     #}
 #}
+tns_admin = Path(os.getenv("TNS_ADMIN", "Wallet_vetappDB"))
+
+if not tns_admin.is_absolute():
+    tns_admin = (BASE_DIR / tns_admin).resolve()
+
+os.environ["TNS_ADMIN"] = str(tns_admin)
+DATABASES= {     
+    'default': {
+                 
+        'ENGINE': 'django.db.backends.oracle',         
+        'NAME': config('TNS_NAME'),         
+        'USER': config('DB_USER'),         
+        'PASSWORD': config('DB_PASSWORD'),         
+        'OPTIONS': {             
+            'config_dir': config('TNS_ADMIN'),             
+            'wallet_location': config('TNS_ADMIN'),             
+            'wallet_password': config('WALLET_PASSWORD'),
+        },     
+    } 
+}
 
 
 # Password validation
