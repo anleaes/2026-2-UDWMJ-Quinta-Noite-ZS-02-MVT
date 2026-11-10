@@ -1,8 +1,7 @@
-/modeloapp/__pycache__/*
-/apps/categories/__pycache__/*
-/apps/categories/migrations/*
-/apps/products/__pycache__/*
-/apps/products/migrations/*
+/vetapp/__pycache__/*
 
 /apps/core/__pycache__/*
 /apps/core/migrations/*
+
+/apps/pessoa/__pycache__/*
+/apps/pessoa/migrations/*
