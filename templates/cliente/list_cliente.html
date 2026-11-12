@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Lista de Clientes - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+    <a href="{% url 'cliente:add_cliente' %}">Cadastro de novo cliente</a>
+<br />
+<br />
+<b>Lista de Clientes</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>CPF</th>
+        <th>Telefone</th>
+        <th>E-mail</th>
+        <th>Endereco</th>
+        <th>Data de Admissao</th>
+        <th>Observacoes Gerais</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.sobrenome }}</td>
+            <td>{{ cliente.cpf }}</td>
+            <td>{{ cliente.telefone }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.endereco }}</td>
+            <td>{{ cliente.data_admissao }}</td>
+            <td>{{ cliente.observacoes_gerais }}</td>
+            <td>
+                <a href="{% url 'clientes:edit_cliente' cliente.id %}">Editar</a>
+            </td>
+            <td>
+                <a href="{% url 'clientes:delete_cliente' cliente.id %}">Excluir</a>
+            </td>
+        </tr> 
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock body %}
