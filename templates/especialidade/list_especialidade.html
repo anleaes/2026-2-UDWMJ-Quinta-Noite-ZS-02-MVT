@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Lista de Especialidades - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+    <a href="{% url 'especialidade:add_especialidade' %}">Cadastro de nova especialidade</a>
+<br />
+<br />
+<b>Lista de Especialidades</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Requer equipamento especial</th>
+            <th>Requer internação</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for especialidade in especialidade %}
+            <tr>
+                <th>{{ especialidade.id }}</th>
+                <td>{{ especialidade.name }}</td>
+                <td>{{ especialidade.descricao }}</td>
+                <td>
+                {% if especialidade.requer_equipamento_especial == True %}
+                    Sim
+                {% endif %}
+                {% if especialidade.requer_equipamento_especial == False %}
+                    Não
+                {% endif %}
+                </td>
+                <td>
+                {% if especialidade.requer_internacao == True %}
+                    Sim
+                {% endif %}
+                {% if especialidade.requer_internacao == False %}
+                    Não 
+                {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'especialidade:edit_especialidade' especialidade.id %}">Editar</a>
+                </td>
+                <td>
+                    <a href="{% url 'especialidade:delete_especialidade' especialidade.id %}">Excluir</a>
+                </td>
+            </tr> 
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}

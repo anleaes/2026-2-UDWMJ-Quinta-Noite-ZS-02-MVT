@@ -5,3 +5,9 @@
 
 /apps/pessoa/__pycache__/*
 /apps/pessoa/migrations/*
+
+/apps/cliente/__pycache__/*
+/apps/cliente/migrations/*
+
+/apps/especialidade/__pycache__/*
+/apps/especialidade/migrations/*

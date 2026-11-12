@@ -19,9 +19,9 @@ def add_cliente(request):
 
 def list_cliente(request):
     template_name = 'cliente/list_cliente.html'
-    clientes = Cliente.objects.filter()
+    cliente = Cliente.objects.filter()
     context = {
-        'clientes': clientes,
+        'cliente': cliente,
     }
     return render(request, template_name, context)
 
