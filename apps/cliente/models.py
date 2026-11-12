@@ -1,5 +1,5 @@
 from django.db import models
-from pessoa import Pessoa
+from pessoa.models import Pessoa
 
 # Create your models here.
 class Cliente(Pessoa):

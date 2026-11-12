@@ -4,7 +4,7 @@ from .models import Cliente
 
 # Create your views here.
 def add_cliente(request):
-    template_name = 'clientes/add_cliente.html'
+    template_name = 'cliente/add_cliente.html'
     context = {}
     if request.method == 'POST':
         form = ClienteForm(request.POST)
@@ -12,13 +12,13 @@ def add_cliente(request):
             f = form.save(commit=False)
             f.save()
             form.save_m2m()
-            return redirect('clientes:list_clientes')
+            return redirect('cliente:list_cliente')
     form = ClienteForm()
     context['form'] = form
     return render(request, template_name, context)
 
-def list_clientes(request):
-    template_name = 'clientes/list_clientes.html'
+def list_cliente(request):
+    template_name = 'cliente/list_cliente.html'
     clientes = Cliente.objects.filter()
     context = {
         'clientes': clientes,
@@ -26,14 +26,14 @@ def list_clientes(request):
     return render(request, template_name, context)
 
 def edit_cliente(request, id_cliente):
-    template_name = 'clientes/add_cliente.html'
+    template_name = 'cliente/add_cliente.html'
     context ={}
     cliente = get_object_or_404(Cliente, id=id_cliente)
     if request.method == 'POST':
         form = ClienteForm(request.POST, instance=cliente)
         if form.is_valid():
             form.save()
-            return redirect('clientes:list_clientes')
+            return redirect('cliente:list_cliente')
     form = ClienteForm(instance=cliente)
     context['form'] = form
     return render(request, template_name, context)
@@ -41,4 +41,4 @@ def edit_cliente(request, id_cliente):
 def delete_cliente(request, id_cliente):
     cliente = Cliente.objects.get(id=id_cliente)
     cliente.delete()
-    return redirect('clientes:list_clientes')
+    return redirect('cliente:list_cliente')
