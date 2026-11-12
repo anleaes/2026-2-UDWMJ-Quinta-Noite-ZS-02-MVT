@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Adicionar Especialidade - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+<b>Cadastro de Especialidade</b>
+<br />
+<br />
+<form action="" method="POST">
+    {% csrf_token %}
+    <label>Nome</label>
+    <br />
+    {{ form.name }}
+    <br />
+    <br />
+    <label>Descrição</label>
+    <br />
+    {{ form.descricao }}
+    <br />
+    <br />
+    <label>Requer equipamento especial</label>
+    <br />
+    {{ form.requer_equipamento_especial }}
+    <br />
+    <br />
+    <label>Requer internação</label>
+    <br />
+    {{ form.requer_internacao }}
+    <br />
+    <br />
+    <button type="submit">Salvar</button>       
+</form>
+
+{% endblock body %}

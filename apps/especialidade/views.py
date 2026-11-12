@@ -12,7 +12,7 @@ def add_especialidade(request):
             f = form.save(commit=False)
             f.save()
             form.save_m2m()
-            return redirect('especialidade:list_especialidades')
+            return redirect('especialidade:list_especialidade')
     form = EspecialidadeForm()
     context['form'] = form
     return render(request, template_name, context)

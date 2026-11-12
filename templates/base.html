@@ -14,7 +14,7 @@
     <a href="{% url 'core:home' %}" ><img src="{% static 'img/img.png' %}" width="200" height="60" /></a>
     <br />
     <a href="{% url 'cliente:list_cliente' %}" ><button onclick="mudarCor()">Clientes</button></a>
-    <a href="#" ><button onclick="alertarMensagem()">Produtos</button></a>
+    <a href="{% url 'especialidade:list_especialidade' %}" ><button onclick="mudarCor()">Especialidades</button></a>
     <a href="#" ><button onclick="alertarMensagem()">Categorias</button></a>
     <a href="#" ><button onclick="alertarMensagem()">Pedidos</button></a>
     <br />
