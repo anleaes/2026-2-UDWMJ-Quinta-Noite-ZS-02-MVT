@@ -29,8 +29,22 @@
                 <th>{{ especialidade.id }}</th>
                 <td>{{ especialidade.name }}</td>
                 <td>{{ especialidade.descricao }}</td>
-                <td>{{ especialidade.requer_equipamento_especial }}</td>
-                <td>{{ especialidade.requer_internacao }}</td>
+                <td>
+                {% if especialidade.requer_equipamento_especial == True %}
+                    Sim
+                {% endif %}
+                {% if especialidade.requer_equipamento_especial == False %}
+                    Não
+                {% endif %}
+                </td>
+                <td>
+                {% if especialidade.requer_internacao == True %}
+                    Sim
+                {% endif %}
+                {% if especialidade.requer_internacao == False %}
+                    Não 
+                {% endif %}
+                </td>
                 <td>
                     <a href="{% url 'especialidade:edit_especialidade' especialidade.id %}">Editar</a>
                 </td>
