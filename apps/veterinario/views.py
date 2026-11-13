@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ClientForm, VeterinarioForm
+from .forms import VeterinarioForm
 from .models import Veterinario, Especialidade
 
 # Create your views here.
