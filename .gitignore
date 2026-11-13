@@ -11,3 +11,6 @@
 
 /apps/especialidade/__pycache__/*
 /apps/especialidade/migrations/*
+
+/apps/veterinario/__pycache__/*
+/apps/veterinario/migrations/*

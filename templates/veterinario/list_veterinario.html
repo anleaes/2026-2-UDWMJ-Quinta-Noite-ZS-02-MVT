@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Lista de Veterinários - {{ block.super }}
+
+{% endblock title %}
+
+{% block body %}
+
+<br />
+    <a href="{% url 'veterinario:add_veterinario' %}">Cadastro de novo veterinário</a>
+<br />
+<br />
+<b>Lista de Veterinários</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>CPF</th>
+        <th>Telefone</th>
+        <th>Salário</th>
+        <th>CRMV</th>
+        <th>Ativo</th>
+        <th>Titulação Máxima</th>
+        <th>Horário de Plantão</th>
+        <th>Especialidades</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for veterinario in veterinario %}
+        <tr>
+            <td>{{ veterinario.id }}</td>
+            <td>{{ veterinario.nome }}</td>
+            <td>{{ veterinario.sobrenome }}</td>
+            <td>{{ veterinario.cpf }}</td>
+            <td>{{ veterinario.telefone }}</td>
+            <td>{{ veterinario.salario }}</td>
+            <td>{{ veterinario.crmv }}</td>
+
+            <td>
+                {% if veterinario.ativo == True %}
+                    Sim
+                {% endif %}
+                {% if veterinario.ativo == False %}
+                    Não
+                {% endif %}
+            </td>
+
+            <td>{{ veterinario.titulacao_maxima }}</td>
+            <td>{{ veterinario.horario_plantao }}</td>
+            <td>
+                <ul>
+                {% for especialidade in veterinario.especialidade.all %}
+                    <li>{{ especialidade.name }}</li>
+                {% empty %}
+                    <li>Sem especialidades</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a href="{% url 'veterinario:edit_veterinario' veterinario.id %}">Editar</a>
+            </td>
+            <td>
+                <a href="{% url 'veterinario:delete_veterinario' veterinario.id %}">Excluir</a>
+            </td>
+        </tr> 
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock body %}
