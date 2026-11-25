@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}Editar{% else %}Adicionar{% endif %} Exame do Atendimento - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>{% if form.instance.pk %}Editar Exame do Atendimento{% else %}Cadastro de Exame do Atendimento{% endif %}</b>
+<br />
+<br />
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="{{ form.atendimento.id_for_label }}">Atendimento</label>
+    <br />
+    {{ form.atendimento }}
+    {{ form.atendimento.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.tipo_exame.id_for_label }}">Tipo de exame</label>
+    <br />
+    {{ form.tipo_exame }}
+    {{ form.tipo_exame.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.resultado.id_for_label }}">Resultado</label>
+    <br />
+    {{ form.resultado }}
+    {{ form.resultado.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.data_realizacao.id_for_label }}">Data de realização</label>
+    <br />
+    {{ form.data_realizacao }}
+    {{ form.data_realizacao.errors }}
+    <br />
+    <br />
+
+    <button type="submit">Salvar</button>
+    <button type="button" onclick="window.history.back()">Voltar</button>
+</form>
+{% endblock body %}
