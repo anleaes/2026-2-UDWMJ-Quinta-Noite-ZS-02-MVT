@@ -9,6 +9,8 @@ class AnimalForm(forms.ModelForm):
         fields = (
             'nome',
             'data_nascimento',
+            'responsavel',
+            'tipo_animal',
             'sexo',
             'foto_animal',
         )
