@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'tipoanimal.apps.TipoanimalConfig',
     'animal.apps.AnimalConfig',
     'tipoexame.apps.TipoexameConfig',
+    'atendimentoexame.apps.AtendimentoexameConfig',
 ]
 
 MIDDLEWARE = [
