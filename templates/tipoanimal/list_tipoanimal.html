@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de Tipos de Animal - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<a href="{% url 'tipoanimal:add_tipoanimal' %}">Cadastro de novo tipo de animal</a>
+<br />
+<br />
+<b>Lista de Tipos de Animal</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Porte</th>
+            <th>Descrição</th>
+            <th>Faixa de peso</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tipoanimal in tipoanimais %}
+            <tr>
+                <td>{{ tipoanimal.id }}</td>
+                <td>{{ tipoanimal.nome }}</td>
+                <td>{{ tipoanimal.get_porte_display }}</td>
+                <td>{{ tipoanimal.descricao }}</td>
+                <td>{{ tipoanimal.faixa_peso }}</td>
+                <td><a href="{% url 'tipoanimal:edit_tipoanimal' tipoanimal.id %}">Editar</a></td>
+                <td><a href="{% url 'tipoanimal:delete_tipoanimal' tipoanimal.id %}">Excluir</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7">Nenhum tipo de animal cadastrado.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
