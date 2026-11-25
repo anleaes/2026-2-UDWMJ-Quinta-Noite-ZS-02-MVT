@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Exames dos Atendimentos - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<a href="{% url 'atendimentoexame:add_atendimentoexame' %}">Adicionar exame ao atendimento</a>
+<br />
+<br />
+<b>Exames dos Atendimentos</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Atendimento</th>
+            <th>Tipo de exame</th>
+            <th>Resultado</th>
+            <th>Data de realização</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for atendimentoexame in atendimentoexames %}
+            <tr>
+                <td>{{ atendimentoexame.id }}</td>
+                <td>{{ atendimentoexame.atendimento }}</td>
+                <td>{{ atendimentoexame.tipo_exame }}</td>
+                <td>{{ atendimentoexame.resultado }}</td>
+                <td>{{ atendimentoexame.data_realizacao }}</td>
+                <td><a href="{% url 'atendimentoexame:edit_atendimentoexame' atendimentoexame.id %}">Editar</a></td>
+                <td><a href="{% url 'atendimentoexame:delete_atendimentoexame' atendimentoexame.id %}">Excluir</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7">Nenhum exame de atendimento cadastrado.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
