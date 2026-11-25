@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de Tipos de Exame - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<a href="{% url 'tipoexame:add_tipoexame' %}">Cadastro de novo tipo de exame</a>
+<br />
+<br />
+<b>Lista de Tipos de Exame</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Tempo de resultado</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tipoexame in tipoexames %}
+            <tr>
+                <td>{{ tipoexame.id }}</td>
+                <td>{{ tipoexame.nome }}</td>
+                <td>{{ tipoexame.descricao }}</td>
+                <td>{{ tipoexame.valor }}</td>
+                <td>{{ tipoexame.tempo_resultado }}</td>
+                <td><a href="{% url 'tipoexame:edit_tipoexame' tipoexame.id %}">Editar</a></td>
+                <td><a href="{% url 'tipoexame:delete_tipoexame' tipoexame.id %}">Excluir</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7">Nenhum tipo de exame cadastrado.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
