@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if animal %}Editar Animal{% else %}Adicionar Animal{% endif %} - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>{% if animal %}Editar Animal{% else %}Cadastro de Animal{% endif %}</b>
+<br />
+<br />
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="{{ form.nome.id_for_label }}">Nome</label>
+    <br />
+    {{ form.nome }}
+    {{ form.nome.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.data_nascimento.id_for_label }}">Data de nascimento</label>
+    <br />
+    {{ form.data_nascimento }}
+    {{ form.data_nascimento.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.responsavel.id_for_label }}">Responsável</label>
+    <br />
+    {{ form.responsavel }}
+    {{ form.responsavel.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.tipo_animal.id_for_label }}">Tipo de animal</label>
+    <br />
+    {{ form.tipo_animal }}
+    {{ form.tipo_animal.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.sexo.id_for_label }}">Sexo</label>
+    <br />
+    {{ form.sexo }}
+    {{ form.sexo.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.foto_animal.id_for_label }}">Foto do animal</label>
+    <br />
+    {{ form.foto_animal }}
+    {{ form.foto_animal.errors }}
+    {% if animal.foto_animal %}
+        <br />
+        <img src="{{ animal.foto_animal.url }}" alt="Foto de {{ animal.nome }}" width="150" />
+    {% endif %}
+    <br />
+    <br />
+
+    <button type="submit">Salvar</button>
+    <button type="button" onclick="window.history.back()">Voltar</button>
+</form>
+{% endblock body %}
