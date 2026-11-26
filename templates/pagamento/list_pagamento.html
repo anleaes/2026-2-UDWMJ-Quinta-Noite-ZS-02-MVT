@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de Pagamentos - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<a href="{% url 'pagamento:add_pagamento' %}">Cadastrar pagamento</a>
+<br />
+<br />
+<b>Lista de Pagamentos</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Atendimento</th>
+            <th>Animal</th>
+            <th>Valor total</th>
+            <th>Forma de pagamento</th>
+            <th>Status</th>
+            <th>Data do pagamento</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pagamento in pagamentos %}
+            <tr>
+                <td>{{ pagamento.id }}</td>
+                <td>{{ pagamento.atendimento }}</td>
+                <td>{{ pagamento.atendimento.animal }}</td>
+                <td>{{ pagamento.valor_total }}</td>
+                <td>{{ pagamento.get_forma_pagamento_display }}</td>
+                <td>{{ pagamento.get_status_pagamento_display }}</td>
+                <td>{{ pagamento.data_pagamento }}</td>
+                <td><a href="{% url 'pagamento:edit_pagamento' pagamento.id %}">Editar</a></td>
+                <td><a href="{% url 'pagamento:delete_pagamento' pagamento.id %}">Excluir</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="9">Nenhum pagamento cadastrado.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
