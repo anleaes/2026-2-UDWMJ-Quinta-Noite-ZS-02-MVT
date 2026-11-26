@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if atendimento %}Editar Atendimento{% else %}Agendar Atendimento{% endif %} - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>{% if atendimento %}Editar Atendimento{% else %}Agendar Atendimento{% endif %}</b>
+<br />
+<br />
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="{{ form.data_hora.id_for_label }}">Data e hora</label>
+    <br />
+    {{ form.data_hora }}
+    {{ form.data_hora.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.motivo.id_for_label }}">Motivo</label>
+    <br />
+    {{ form.motivo }}
+    {{ form.motivo.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.observacoes.id_for_label }}">Observações</label>
+    <br />
+    {{ form.observacoes }}
+    {{ form.observacoes.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.status.id_for_label }}">Status</label>
+    <br />
+    {{ form.status }}
+    {{ form.status.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.tipo_atendimento.id_for_label }}">Tipo de atendimento</label>
+    <br />
+    {{ form.tipo_atendimento }}
+    {{ form.tipo_atendimento.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.animal.id_for_label }}">Animal</label>
+    <br />
+    {{ form.animal }}
+    {{ form.animal.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.veterinario.id_for_label }}">Veterinário</label>
+    <br />
+    {{ form.veterinario }}
+    {{ form.veterinario.errors }}
+    <br />
+    <br />
+
+    <button type="submit">Salvar</button>
+    <button type="button" onclick="window.history.back()">Voltar</button>
+</form>
+{% endblock body %}

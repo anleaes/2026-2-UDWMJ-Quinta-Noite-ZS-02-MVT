@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de Atendimentos - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<a href="{% url 'atendimento:add_atendimento' %}">Agendar atendimento</a>
+<br />
+<br />
+<b>Lista de Atendimentos</b>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data e hora</th>
+            <th>Motivo</th>
+            <th>Status</th>
+            <th>Tipo de atendimento</th>
+            <th>Animal</th>
+            <th>Veterinário</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for atendimento in atendimentos %}
+            <tr>
+                <td>{{ atendimento.id }}</td>
+                <td>{{ atendimento.data_hora }}</td>
+                <td>{{ atendimento.motivo }}</td>
+                <td>{{ atendimento.get_status_display }}</td>
+                <td>{{ atendimento.tipo_atendimento }}</td>
+                <td>{{ atendimento.animal }}</td>
+                <td>{{ atendimento.veterinario }}</td>
+                <td><a href="{% url 'atendimento:edit_atendimento' atendimento.id %}">Editar</a></td>
+                <td><a href="{% url 'atendimento:delete_atendimento' atendimento.id %}">Excluir</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="9">Nenhum atendimento cadastrado.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}

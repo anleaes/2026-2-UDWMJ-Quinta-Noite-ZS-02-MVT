@@ -18,6 +18,4 @@ class Veterinario(Pessoa):
         ordering =['id']
 
     def __str__(self):
-        return super().first_name
-        # ou pode ser usado "return super().__str__()"
-
+        return super().__str__()
