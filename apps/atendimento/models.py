@@ -48,6 +48,14 @@ class Atendimento(models.Model):
         on_delete=models.PROTECT,
         related_name='atendimentos',
     )
+    tipo_consulta = models.ForeignKey(
+        'tipoconsulta.TipoConsulta',
+        verbose_name='Tipo de consulta',
+        on_delete=models.PROTECT,
+        related_name='atendimentos',
+        blank=True,
+        null=True,
+    )
 
     class Meta:
         verbose_name = 'Atendimento'

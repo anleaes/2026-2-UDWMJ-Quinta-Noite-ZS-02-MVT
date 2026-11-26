@@ -10,6 +10,7 @@ from tipoanimal.models import TipoAnimal
 from veterinario.models import Veterinario
 
 from .models import Atendimento, TipoAtendimento
+from tipoconsulta.models import TipoConsulta
 
 
 class AtendimentoViewsTests(TestCase):
@@ -52,6 +53,7 @@ class AtendimentoViewsTests(TestCase):
             nome='Consulta',
             descricao='Atendimento clínico',
         )
+        cls.tipo_consulta = TipoConsulta.objects.create(nome='Consulta geral')
         cls.data_hora = timezone.now().replace(second=0, microsecond=0)
 
     def atendimento_form_data(self, **overrides):
@@ -61,6 +63,7 @@ class AtendimentoViewsTests(TestCase):
             'observacoes': '',
             'status': Atendimento.Status.AGENDADO,
             'tipo_atendimento': self.tipo_atendimento.pk,
+            'tipo_consulta': '',
             'animal': self.animal.pk,
             'veterinario': self.veterinario.pk,
         }
@@ -100,6 +103,18 @@ class AtendimentoViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('status', response.context['form'].errors)
         self.assertEqual(Atendimento.objects.count(), 0)
+
+    def test_add_atendimento_with_optional_tipo_consulta(self):
+        response = self.client.post(
+            reverse('atendimento:add_atendimento'),
+            self.atendimento_form_data(
+                tipo_consulta=self.tipo_consulta.pk,
+            ),
+        )
+
+        self.assertRedirects(response, reverse('atendimento:list_atendimento'))
+        atendimento = Atendimento.objects.get()
+        self.assertEqual(atendimento.tipo_consulta, self.tipo_consulta)
 
     def test_edit_atendimento(self):
         atendimento = Atendimento.objects.create(

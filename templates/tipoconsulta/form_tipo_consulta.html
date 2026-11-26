@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if tipo_consulta %}Editar{% else %}Adicionar{% endif %} Tipo de Consulta - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>{% if tipo_consulta %}Editar Tipo de Consulta{% else %}Cadastro de Tipo de Consulta{% endif %}</b>
+<br />
+<br />
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="{{ form.nome.id_for_label }}">Nome</label>
+    <br />
+    {{ form.nome }}
+    {{ form.nome.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.descricao.id_for_label }}">Descrição</label>
+    <br />
+    {{ form.descricao }}
+    {{ form.descricao.errors }}
+    <br />
+    <br />
+
+    <button type="submit">Salvar</button>
+    <button type="button" onclick="window.history.back()">Voltar</button>
+</form>
+{% endblock body %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Excluir Tipo de Consulta - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>Excluir Tipo de Consulta</b>
+<p>Confirma a exclusão de "{{ tipo_consulta }}"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirmar exclusão</button>
+    <a href="{% url 'tipoconsulta:list_tipo_consulta' %}">Cancelar</a>
+</form>
+{% endblock body %}
