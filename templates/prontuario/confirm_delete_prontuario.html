@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Excluir Prontuário - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>Excluir Prontuário</b>
+<p>Confirma a exclusão do prontuário do atendimento "{{ prontuario.atendimento }}"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirmar exclusão</button>
+    <a href="{% url 'prontuario:list_prontuario' %}">Cancelar</a>
+</form>
+{% endblock body %}
