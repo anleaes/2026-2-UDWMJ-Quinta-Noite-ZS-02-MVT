@@ -6,7 +6,6 @@ from .models import Atendimento
 
 def list_atendimento(request):
     atendimentos = Atendimento.objects.select_related(
-        'tipo_atendimento',
         'tipo_consulta',
         'animal',
         'veterinario',

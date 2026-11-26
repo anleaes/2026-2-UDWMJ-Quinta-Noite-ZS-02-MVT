@@ -9,8 +9,9 @@ from cliente.models import Cliente
 from tipoanimal.models import TipoAnimal
 from veterinario.models import Veterinario
 
-from .models import Atendimento, TipoAtendimento
 from tipoconsulta.models import TipoConsulta
+
+from .models import Atendimento
 
 
 class AtendimentoViewsTests(TestCase):
@@ -49,10 +50,6 @@ class AtendimentoViewsTests(TestCase):
             titulacao_maxima='Mestrado',
             horario_plantao='08:00 às 18:00',
         )
-        cls.tipo_atendimento = TipoAtendimento.objects.create(
-            nome='Consulta',
-            descricao='Atendimento clínico',
-        )
         cls.tipo_consulta = TipoConsulta.objects.create(nome='Consulta geral')
         cls.data_hora = timezone.now().replace(second=0, microsecond=0)
 
@@ -62,7 +59,6 @@ class AtendimentoViewsTests(TestCase):
             'motivo': 'Consulta de rotina',
             'observacoes': '',
             'status': Atendimento.Status.AGENDADO,
-            'tipo_atendimento': self.tipo_atendimento.pk,
             'tipo_consulta': '',
             'animal': self.animal.pk,
             'veterinario': self.veterinario.pk,
@@ -74,7 +70,6 @@ class AtendimentoViewsTests(TestCase):
         Atendimento.objects.create(
             data_hora=self.data_hora,
             motivo='Consulta de rotina',
-            tipo_atendimento=self.tipo_atendimento,
             animal=self.animal,
             veterinario=self.veterinario,
         )
@@ -120,7 +115,6 @@ class AtendimentoViewsTests(TestCase):
         atendimento = Atendimento.objects.create(
             data_hora=self.data_hora,
             motivo='Consulta de rotina',
-            tipo_atendimento=self.tipo_atendimento,
             animal=self.animal,
             veterinario=self.veterinario,
         )
@@ -138,7 +132,6 @@ class AtendimentoViewsTests(TestCase):
         atendimento = Atendimento.objects.create(
             data_hora=self.data_hora,
             motivo='Consulta de rotina',
-            tipo_atendimento=self.tipo_atendimento,
             animal=self.animal,
             veterinario=self.veterinario,
         )

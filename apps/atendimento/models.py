@@ -1,19 +1,6 @@
 from django.db import models
 
 
-class TipoAtendimento(models.Model):
-    nome = models.CharField('Nome', max_length=100)
-    descricao = models.TextField('Descrição', blank=True)
-
-    class Meta:
-        verbose_name = 'Tipo de atendimento'
-        verbose_name_plural = 'Tipos de atendimento'
-        ordering = ['id']
-
-    def __str__(self):
-        return self.nome
-
-
 class Atendimento(models.Model):
     class Status(models.TextChoices):
         AGENDADO = 'agendado', 'Agendado'
@@ -29,12 +16,6 @@ class Atendimento(models.Model):
         max_length=20,
         choices=Status.choices,
         default=Status.AGENDADO,
-    )
-    tipo_atendimento = models.ForeignKey(
-        TipoAtendimento,
-        verbose_name='Tipo de atendimento',
-        on_delete=models.PROTECT,
-        related_name='atendimentos',
     )
     animal = models.ForeignKey(
         'animal.Animal',
