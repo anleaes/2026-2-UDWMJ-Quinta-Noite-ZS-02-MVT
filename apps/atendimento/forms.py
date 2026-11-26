@@ -12,6 +12,7 @@ class AtendimentoForm(forms.ModelForm):
             'observacoes',
             'status',
             'tipo_atendimento',
+            'tipo_consulta',
             'animal',
             'veterinario',
         )
