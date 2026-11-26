@@ -10,25 +10,29 @@
     <title>{% block title %}Vetapp{% endblock title %}</title>
 </head>
 <body>
-    
-    <a href="{% url 'core:home' %}" ><img src="{% static 'img/img.png' %}" width="200" height="60" /></a>
-    <br />
-    <a href="{% url 'cliente:list_cliente' %}" ><button onclick="mudarCor()">Clientes</button></a>
-    <a href="{% url 'especialidade:list_especialidade' %}" ><button onclick="mudarCor()">Especialidades</button></a>
-    <a href="{% url 'veterinario:list_veterinario' %}" ><button onclick="mudarCor()">Veterinários</button></a>
-    <a href="{% url 'atendimento:list_atendimento' %}" ><button>Atendimentos</button></a>
-    <a href="{% url 'prontuario:list_prontuario' %}" ><button>Prontuários</button></a>
-    <a href="{% url 'pagamento:list_pagamento' %}" ><button>Pagamentos</button></a>
-    <a href="{% url 'animal:list_animal' %}" ><button>Animais</button></a>
-    <a href="{% url 'tipoanimal:list_tipoanimal' %}" ><button>Tipos de Animais</button></a>
-    <a href="{% url 'tipoconsulta:list_tipo_consulta' %}" ><button>Tipos de Consulta</button></a>
-    <a href="{% url 'tipoexame:list_tipoexame' %}" ><button>Tipos de Exame</button></a>
-    <a href="{% url 'atendimentoexame:list_atendimentoexame' %}" ><button>Atendimento/Exames</button></a>
-    <br />
+    <header class="site-header">
+        <a class="brand-link" href="{% url 'core:home' %}">
+            <img class="brand-logo" src="{% static 'img/img.png' %}" alt="Vetapp - início" width="200" height="60">
+        </a>
+        <nav class="primary-nav" aria-label="Navegação principal">
+            <a class="primary-nav__link" href="{% url 'cliente:list_cliente' %}">Clientes</a>
+            <a class="primary-nav__link" href="{% url 'especialidade:list_especialidade' %}">Especialidades</a>
+            <a class="primary-nav__link" href="{% url 'veterinario:list_veterinario' %}">Veterinários</a>
+            <a class="primary-nav__link" href="{% url 'atendimento:list_atendimento' %}">Atendimentos</a>
+            <a class="primary-nav__link" href="{% url 'prontuario:list_prontuario' %}">Prontuários</a>
+            <a class="primary-nav__link" href="{% url 'pagamento:list_pagamento' %}">Pagamentos</a>
+            <a class="primary-nav__link" href="{% url 'animal:list_animal' %}">Animais</a>
+            <a class="primary-nav__link" href="{% url 'tipoanimal:list_tipoanimal' %}">Tipos de Animais</a>
+            <a class="primary-nav__link" href="{% url 'tipoconsulta:list_tipo_consulta' %}">Tipos de Consulta</a>
+            <a class="primary-nav__link" href="{% url 'tipoexame:list_tipoexame' %}">Tipos de Exame</a>
+            <a class="primary-nav__link" href="{% url 'atendimentoexame:list_atendimentoexame' %}">Atendimento/Exames</a>
+        </nav>
+    </header>
 
-    {% block body %}
-    
-    {% endblock body %}
+    <main class="page-content">
+        {% block body %}
+        {% endblock body %}
+    </main>
     
     <script src="{% static 'js/arquivo_com_javascript.js' %}"></script>
 </body>
