@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'especialidade.apps.EspecialidadeConfig',
     'veterinario.apps.VeterinarioConfig',
     'atendimento.apps.AtendimentoConfig',
+    'tipoconsulta.apps.TipoConsultaConfig',
     'tipoanimal.apps.TipoanimalConfig',
     'animal.apps.AnimalConfig',
     'tipoexame.apps.TipoexameConfig',
