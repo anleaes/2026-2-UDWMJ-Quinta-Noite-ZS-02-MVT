@@ -26,6 +26,7 @@ urlpatterns = [
     path('especialidade/', include('especialidade.urls', namespace='especialidade')),
     path('veterinario/', include('veterinario.urls', namespace='veterinario')),
     path('atendimento/', include('atendimento.urls', namespace='atendimento')),
+    path('prontuario/', include('prontuario.urls', namespace='prontuario')),
     path('tipoconsulta/', include('tipoconsulta.urls', namespace='tipoconsulta')),
     path('tipoanimal/', include('tipoanimal.urls', namespace='tipoanimal')),
     path('animal/', include('animal.urls', namespace='animal')),
