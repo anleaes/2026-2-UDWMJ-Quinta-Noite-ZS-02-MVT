@@ -17,7 +17,6 @@
             <th>Data e hora</th>
             <th>Motivo</th>
             <th>Status</th>
-            <th>Tipo de atendimento</th>
             <th>Tipo de consulta</th>
             <th>Animal</th>
             <th>Veterinário</th>
@@ -32,7 +31,6 @@
                 <td>{{ atendimento.data_hora }}</td>
                 <td>{{ atendimento.motivo }}</td>
                 <td>{{ atendimento.get_status_display }}</td>
-                <td>{{ atendimento.tipo_atendimento }}</td>
                 <td>{{ atendimento.tipo_consulta|default:"-" }}</td>
                 <td>{{ atendimento.animal }}</td>
                 <td>{{ atendimento.veterinario }}</td>
@@ -41,7 +39,7 @@
             </tr>
         {% empty %}
             <tr>
-                <td colspan="10">Nenhum atendimento cadastrado.</td>
+                <td colspan="9">Nenhum atendimento cadastrado.</td>
             </tr>
         {% endfor %}
     </tbody>

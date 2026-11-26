@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import Atendimento, TipoAtendimento
+from .models import Atendimento
 
 
 admin.site.register(Atendimento)
-admin.site.register(TipoAtendimento)
