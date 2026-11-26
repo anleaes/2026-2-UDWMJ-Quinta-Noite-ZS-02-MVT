@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Excluir Pagamento - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>Excluir Pagamento</b>
+<p>Confirma a exclusão do pagamento do atendimento "{{ pagamento.atendimento }}"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirmar exclusão</button>
+    <a href="{% url 'pagamento:list_pagamento' %}">Cancelar</a>
+</form>
+{% endblock body %}

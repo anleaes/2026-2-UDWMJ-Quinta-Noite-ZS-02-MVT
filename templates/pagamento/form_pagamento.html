@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if pagamento %}Editar{% else %}Adicionar{% endif %} Pagamento - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+<br />
+<b>{% if pagamento %}Editar Pagamento{% else %}Cadastro de Pagamento{% endif %}</b>
+<br />
+<br />
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="{{ form.atendimento.id_for_label }}">Atendimento</label>
+    <br />
+    {{ form.atendimento }}
+    {{ form.atendimento.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.valor_total.id_for_label }}">Valor total</label>
+    <br />
+    {{ form.valor_total }}
+    {{ form.valor_total.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.forma_pagamento.id_for_label }}">Forma de pagamento</label>
+    <br />
+    {{ form.forma_pagamento }}
+    {{ form.forma_pagamento.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.status_pagamento.id_for_label }}">Status do pagamento</label>
+    <br />
+    {{ form.status_pagamento }}
+    {{ form.status_pagamento.errors }}
+    <br />
+    <br />
+
+    <label for="{{ form.data_pagamento.id_for_label }}">Data do pagamento</label>
+    <br />
+    {{ form.data_pagamento }}
+    {{ form.data_pagamento.errors }}
+    <br />
+    <br />
+
+    <button type="submit">Salvar</button>
+    <button type="button" onclick="window.history.back()">Voltar</button>
+</form>
+{% endblock body %}
